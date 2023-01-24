@@ -3,4 +3,5 @@ Include/
 Lib/
 Scripts/
 share/
+# *.csv
 *.cfg
