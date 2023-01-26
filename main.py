@@ -1,6 +1,7 @@
 from dash import Dash, html
 import pandas as pd
 
+# just a comment
 # generating table for dash board
 def generate_tables(data_frame : pd.DataFrame):
     return html.Table([
