@@ -1,31 +1,33 @@
-from dash import Dash, html, dcc, dash_table
-import plotly.express as px
+from dash import Dash, html
 import pandas as pd
 
-# creating our app
+# generating table for dash board
+def generate_tables(data_frame : pd.DataFrame):
+    return html.Table([
+        html.Thead(
+            html.Tr([html.Th(col) for col in data_frame.columns])
+        ),
+        html.Tbody([
+            html.Tr([
+                html.Td(data_frame.iloc[row][col]) for col in data_frame.columns
+            ])
+            for row in range(len(data_frame))
+        ])
+    ])
+
+# creating app
 app = Dash(__name__)
 
-# importing the data
-df = pd.DataFrame({
-    "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-    "Amount": [4, 1, 2, 2, 4, 5],
-    "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-})
+# import data
+df = pd.read_excel("data.xlsx")
 
-# creating fig
-fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group") # bar graph
-
-# layout
+# app layout
 app.layout = html.Div(
-    children=[
-        html.H1(children="hello Dash"),
-        dcc.Graph(
-            id="example-graph",
-            figure=fig
-        )
+    children = [
+        html.H1(children = "Aution Of Bytes"),
+        generate_tables(df)
     ]
 )
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
-    pass
+    app.run_server(debug = True)
