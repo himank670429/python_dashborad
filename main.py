@@ -25,7 +25,7 @@ df = pd.read_excel("data.xlsx")
 # app layout
 app.layout = html.Div(
     children = [
-        html.H1(children = "Aution Of Bytes"),
+        html.H1(children = "Auction Of Bytes"),
         generate_tables(df)
     ]
 )
