@@ -2,8 +2,8 @@ from dash import Dash, html, Input, Output, callback
 import pandas as pd
 from data import get_data
 
-url = "" # enter your google sheet url here
-sheet_name = "" # enter your google sheet name here
+url = "https://docs.google.com/spreadsheets/d/1f3x5eT3dLcCcnTYUjGXq8kWCXwqq5A_xIyiVa-h8BEg/edit#gid=0" # enter your google sheet url here
+sheet_name = "data" # enter your google sheet name here
 @callback(
     Output(component_id='container',component_property='children'),
     Input(component_id='btn', component_property='n_clicks'),
@@ -22,7 +22,6 @@ def generate_tables(n_clicks):
             for row in range(len(data_frame))
         ])
     ])
-
 
 
 # creating app
