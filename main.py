@@ -1,12 +1,18 @@
 from dash import Dash, html, Input, Output, callback
 import pandas as pd
 
+url = r"https://docs.google.com/spreadsheets/d/e/2PACX-1vSzEDkDrgBh65x57aSFARUK_5jxlciUa_C8hZK5cDWeAe8Oo4j4ysypG0Ajl4RADpY7ZPdkwT14Y8dO/pub?gid=0&single=true&output=csv"
+
 @callback(
     Output(component_id='container',component_property='children'),
     Input(component_id='btn', component_property='n_clicks'),
 )
+
+
+
 def generate_tables(n_clicks):
-    data_frame = pd.read_excel("data.xlsx")
+    # data_frame = pd.read_excel("data.xlsx")
+    data_frame = pd.read_csv("data.csv")
     return html.Table([
         html.Thead(
             html.Tr([html.Th(col) for col in data_frame.columns])
