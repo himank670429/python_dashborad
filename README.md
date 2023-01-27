@@ -17,7 +17,15 @@ Please refer to the guidelines to run and modify the code according to your requ
 pip install -r requirements.txt
 ```
 
-- Then run the python file by using the command `python main.py`
+- Then run the python file by using the command for Windows
+```bash
+python main.py
+```
+or 
+```bash
+python3 main.py
+```
+for Mac and Linux 
 
 - It will run your dash board on the localhost with default "port 8050" for Mac and "port 8501" for Windows.
 
