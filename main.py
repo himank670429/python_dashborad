@@ -2,6 +2,7 @@ from dash import Dash, html, Input, Output, callback, dcc
 import pandas as pd
 from data import get_data
 
+external_script = ["https://tailwindcss.com/", {"src": "https://cdn.tailwindcss.com"}]
 url = "https://docs.google.com/spreadsheets/d/1hL94OaViPEwfEcsm238wYnjA8L5bIkHvUdxfTcYYDBQ/edit#gid=0" # enter your google sheet url here
 sheet_name = "Data" # enter your google sheet name here
 reload_duration = 5 # duration of page refreshing 
@@ -38,7 +39,7 @@ app.layout = html.Div(
             interval = reload_duration*1000
         ),
         html.H1(children = "Auction Of Bytes"),
-        html.Div(id = "container", children = ""),
+        html.Div(id = "container", children = "" , className="w-full h-full flex"),
     ]
 )
 
