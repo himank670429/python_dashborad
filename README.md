@@ -27,6 +27,6 @@ python3 main.py
 ```
 for Mac and Linux 
 
-- It will run your dash board on the localhost with default "port 8050" for Mac and "port 8501" for Windows.
-
-- The refresh button on the dash baord is to reload the values if the exel file is updated or the values are changed.
+- It will run your dash board on the localhost with default "port 8050".
+- Page reload can be changed depending upon the reload_duration specified in main.py (default 5 seconds)
+- For styling, you can import your preferred framerwork's CDN
