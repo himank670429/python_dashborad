@@ -28,8 +28,11 @@ def generate_tables(n_intervals):
 
 
 # creating app
-app = Dash(__name__)
-
+app = Dash(
+    __name__,
+    external_scripts=external_script
+)
+app.scripts.config.serve_locally = True
 # app layout
 app.layout = html.Div(
     children = [
