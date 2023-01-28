@@ -5,3 +5,6 @@ Scripts/
 share/
 *.csv
 *.cfg
+__pycache__/
+*.pyc
+static/
