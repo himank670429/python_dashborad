@@ -13,7 +13,8 @@ reload_duration = 5 # duration of page refreshing
 )
 
 def generate_tables(n_intervals):
-    data_frame = get_data(url , sheet_name)
+    # data_frame = get_data(url , sheet_name)
+    data_frame = pd.read_csv("data.csv")
     return html.Table([
         html.Thead(
             html.Tr([html.Th(col) for col in data_frame.columns])
