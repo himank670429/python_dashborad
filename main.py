@@ -17,15 +17,18 @@ def generate_tables(n_intervals):
     data_frame = pd.read_csv("data.csv")
     return html.Table([
         html.Thead(
-            html.Tr([html.Th(col) for col in data_frame.columns])
+            html.Tr([html.Th(col) for col in data_frame.columns] , 
+            className='''text-[#003060]
+                        text-2xl''')
         ),
         html.Tbody([
             html.Tr([
                 html.Td(data_frame.iloc[row][col]) for col in data_frame.columns
-            ])
+            ] , )
             for row in range(len(data_frame))
-        ])
-    ])
+        ], className='''text-center
+                        text-lg text-[#003060]''')
+    ] , className="w-full table-auto")
 
 
 # creating app
@@ -42,9 +45,15 @@ app.layout = html.Div(
             n_intervals = 0,
             interval = reload_duration*1000
         ),
-        html.H1(children = "Auction Of Bytes"),
-        html.Div(id = "container", children = "" , className="w-full h-full flex"),
-    ]
+        html.H1(children = "Auction Of Bytes",
+        className='''w-full flex justify-center align-center
+                    font-bold text-[#002090] text-6xl'''),
+        html.Hr(
+            className = ''''''
+        ),
+        html.Div(id = "container", children = ""),
+    ],
+    className="w-full h-screen bg-cyan-400"
 )
 
 if __name__ == "__main__":
