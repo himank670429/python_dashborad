@@ -19,16 +19,16 @@ def generate_tables(n_intervals):
         html.Thead(
             html.Tr([html.Th(col) for col in data_frame.columns] , 
             className='''text-[#FFFFFF]
-                        text-2xl border-2 border-[#03FFFF]''')
+                        text-2xl border-[3px] bg-[#1B6C80] border-[#03FFFF]''')
         ),
         html.Tbody([
             html.Tr([
-                html.Td(data_frame.iloc[row][col]) for col in data_frame.columns
-            ] , )
+                html.Td(data_frame.iloc[row][col] , className='''border-2''') for col in data_frame.columns
+            ])
             for row in range(len(data_frame))
         ], className='''text-center
-                        text-lg text-[#FFFFFF]''')
-    ] , className="w-full border-2 border-[#03FFFF] table-fixed")
+                        text-lg text-[#FFFFFF] border-2 ''')
+    ] , className="reaponsive-table w-full border-[#03FFFF] table-fixed", )
 
 
 # creating app
@@ -42,9 +42,9 @@ app.layout = html.Div([
     html.Div([
         html.Img(src="./static/assets/tm-logo.png", width="70px" , height="auto") , 
         html.H1(children="Auction of Bytes" , 
-                className='''ml-[15px] text-6xl font-bold text-[#34F5C5]''')
+                className='''ml-[15px] text-6xl font-bold text-[#FFEFF2]''')
     ] , 
-    className='''flex align-center justify-center pt-[20px]'''),
+    className='''flex align-center justify-center pt-[10px]'''),
     # Main table
     html.Div(
          children = [
@@ -56,7 +56,7 @@ app.layout = html.Div([
          html.Div(id = "container", children = ""),
         ],
         
-        className='''mt-[10px]'''
+        className='''mx-4 shadow-2xl shadow-[#3FFFFF]/50'''
     ),
 
     
@@ -65,29 +65,29 @@ app.layout = html.Div([
         html.Div(
         # Tech marathon
         children = (html.A(href="http://techmarathon.in/", children=[
-            html.Img(src = "./static/assets/tm-logo.png", width='60px', height='auto'),
+            html.Img(src = "./static/assets/tm-logo.png", width='50px', height='auto'),
             ],className="flex"),
             )
         ),
         html.Div(
             children=(
                 html.H5(children = "In Collaboration With", 
-                className = '''text-[#FFFFFF] mt-[20px] mx-[20px]''')
+                className = '''mt-[10px] text-[#FFFFFF] mx-[20px]''')
             )
         )
         ,
         html.Div(
         # Sanganika
         children = (html.A(href="https://www.instagram.com/sanganika_dduc/" , children=[
-            html.Img(src="./static/assets/sanganika-logo.png", width='60px', height='auto'),
+            html.Img(src="./static/assets/sanganika-logo.png", width='50px', height='auto'),
             ], className="flex")
             )
         )
     ] , 
     className='''flex align-center justify-center mt-[10px]'''),
 ],
-className='''bg-gradient-to-br from-[#40C0CB] to-[#04165D] w-full h-screen''')
-
+className='''bg-gradient-to-br from-[#40C0CB] to-[#002133] via[#04165D] w-full h-screen''')
+#bg-gradient-to-br from-[#04165D] to-[#40C0CB]
 html.style= '''@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
                font-family : "Quicksand" , sans-serif; '''
 
