@@ -7,6 +7,10 @@ url = "https://docs.google.com/spreadsheets/d/1hL94OaViPEwfEcsm238wYnjA8L5bIkHvU
 sheet_name = "Data" # enter your google sheet name here
 reload_duration = 5 # duration of page refreshing 
 
+FONT_COLOR = "#000000"
+TABLE_BORDER = "#000000"
+SHADOW_COLOR = "#000000"
+
 @callback(
     Output(component_id='container',component_property='children'),
     Input(component_id='live-update', component_property='n_intervals'),
@@ -18,20 +22,20 @@ def generate_tables(n_intervals):
     return html.Table([
         html.Thead(
             html.Tr([html.Th(col) for col in data_frame.columns] , 
-            className='''text-[#FFFFFF]
-                        text-2xl border-[3px] bg-[#1B6C80] border-[#03FFFF]''')
+            className=f'''text-[{FONT_COLOR}]
+                        text-2xl border-[3px] border-[{TABLE_BORDER}]''')
         ),
         html.Tbody([
             html.Tr([
-                html.Td(data_frame.iloc[row][col] , className='''border-2''') for col in data_frame.columns
+                html.Td(data_frame.iloc[row][col] , className=f'''border-2 border-x-[#BBBBBB] border-b-[#BBBBBB]''') for col in data_frame.columns
             ])
             for row in range(len(data_frame))
-        ], className='''text-center
-                        text-lg text-[#FFFFFF] border-2 ''')
-    ] , className="reaponsive-table w-full border-[#03FFFF] table-fixed", )
+        ], className=f'''text-center
+                        text-lg text-[{FONT_COLOR}]''')
+    ] , className=f"w-full table-fixed", )
 
 
-# creating app
+# Creating App
 app = Dash(
     __name__,
     external_scripts=external_script
@@ -40,9 +44,10 @@ app.scripts.config.serve_locally = True
 app.layout = html.Div([
     # Title banner
     html.Div([
-        html.Img(src="./static/assets/tm-logo.png", width="70px" , height="auto") , 
+        html.Img(src="./static/assets/tm-logo.png", width="70px" , height="auto" , className='''mr-[10px]''') , 
         html.H1(children="Auction of Bytes" , 
-                className='''ml-[15px] text-6xl font-bold text-[#FFEFF2]''')
+                className=f'''ml-[15px] text-6xl font-bold text-[#FFFFFF]'''),
+        html.Img(src="./static/assets/sanganika-logo.png", width="70px" , height="auto" , className='''ml-[20px]''') , 
     ] , 
     className='''flex align-center justify-center pt-[10px]'''),
     # Main table
@@ -56,40 +61,15 @@ app.layout = html.Div([
          html.Div(id = "container", children = ""),
         ],
         
-        className='''mx-4 shadow-2xl shadow-[#3FFFFF]/50'''
-    ),
-
-    
-    # Footer
-    html.Div([
-        html.Div(
-        # Tech marathon
-        children = (html.A(href="http://techmarathon.in/", children=[
-            html.Img(src = "./static/assets/tm-logo.png", width='50px', height='auto'),
-            ],className="flex"),
-            )
-        ),
-        html.Div(
-            children=(
-                html.H5(children = "In Collaboration With", 
-                className = '''mt-[10px] text-[#FFFFFF] mx-[20px]''')
-            )
-        )
-        ,
-        html.Div(
-        # Sanganika
-        children = (html.A(href="https://www.instagram.com/sanganika_dduc/" , children=[
-            html.Img(src="./static/assets/sanganika-logo.png", width='50px', height='auto'),
-            ], className="flex")
-            )
-        )
-    ] , 
-    className='''flex align-center justify-center mt-[10px]'''),
+        className=f'''mx-4 mt-[20px] shadow-2xl shadow-[{SHADOW_COLOR}]/20 bg-[#FCFCFC] p-[30px] rounded-lg'''
+    )
 ],
-className='''bg-gradient-to-br from-[#40C0CB] to-[#002133] via[#04165D] w-full h-screen''')
-#bg-gradient-to-br from-[#04165D] to-[#40C0CB]
+className=f'''bg-[url("https://img.freepik.com/free-vector/abstract-blue-tone-memphis-patterned-social-template-vector_53876-140329.jpg?w=1800&t=st=1675156875~exp=1675157475~hmac=8d82f02b0f24e6e4e402f739c1b8411c889cbf9c72c2ddd7929f441d7a4fe1b7")] bg-cover w-full h-screen''')
+
 html.style= '''@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-               font-family : "Quicksand" , sans-serif; '''
+               font-family : "Quicksand" , sans-serif; 
+                background-image : radial-gradient("#86C8BC" , "#CEEDC7");
+'''
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug = False)
