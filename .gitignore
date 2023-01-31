@@ -6,4 +6,3 @@ share/
 *.cfg
 __pycache__/
 *.pyc
-static/

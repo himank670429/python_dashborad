@@ -18,8 +18,8 @@ def generate_tables(n_intervals):
     return html.Table([
         html.Thead(
             html.Tr([html.Th(col) for col in data_frame.columns] , 
-            className='''text-[#003060]
-                        text-2xl''')
+            className='''text-[#FFFFFF]
+                        text-2xl border-2 border-[#03FFFF]''')
         ),
         html.Tbody([
             html.Tr([
@@ -27,8 +27,8 @@ def generate_tables(n_intervals):
             ] , )
             for row in range(len(data_frame))
         ], className='''text-center
-                        text-lg text-[#003060]''')
-    ] , className="w-full table-auto")
+                        text-lg text-[#FFFFFF]''')
+    ] , className="w-full border-2 border-[#03FFFF] table-fixed")
 
 
 # creating app
@@ -37,24 +37,54 @@ app = Dash(
     external_scripts=external_script
 )
 app.scripts.config.serve_locally = True
-# app layout
-app.layout = html.Div(
-    children = [
-        dcc.Interval(
-            id = 'live-update',
-            n_intervals = 0,
-            interval = reload_duration*1000
-        ),
-        html.H1(children = "Auction Of Bytes",
-        className='''w-full flex justify-center align-center
-                    font-bold text-[#002090] text-6xl'''),
-        html.Hr(
-            className = ''''''
-        ),
-        html.Div(id = "container", children = ""),
-    ],
-    className="w-full h-screen bg-cyan-400"
-)
+app.layout = html.Div([
+    # Title banner
+    html.Div([
+        html.Img(src="./static/assets/tm-logo.png", width="70px" , height="auto") , 
+        html.H1(children="Auction of Bytes" , 
+                className='''ml-[15px] text-6xl font-bold text-[#34F5C5]''')
+    ] , 
+    className='''flex align-center justify-center pt-[20px]'''),
+    # Main table
+    html.Div(
+         children = [
+             dcc.Interval(
+                 id = 'live-update',
+                 n_intervals = 0,
+                 interval = reload_duration*1000
+             ),
+         html.Div(id = "container", children = ""),
+        ],
+        
+        className='''mt-[10px]'''
+    ),
+
+    
+    # Footer
+    html.Div([
+        # Tech marathon
+        html.A(href="http://techmarathon.in/", children=[
+            html.Img(src = "./static/assets/tm-logo.png", width='40px', height='auto'),
+            html.H6("Tech marathon")
+        ],className="flex"),
+        # Sanganika
+        html.A(href="https://www.instagram.com/sanganika_dduc/" , children=[
+            html.Img(src="./static/assets/sanganika-logo.png", width='40px', height='auto'),
+            html.H6("Sanganika")
+        ], className="flex"),
+        # DDUC
+        html.A(href="https://dducollegedu.ac.in", children=[
+            html.Img(src="./static/assets/dduc-logo.png", width='40px', height='auto'),
+            html.H6("Deen Dayal Upadhyaya College")
+        ], className="flex"),
+        
+    ] , 
+    className='''flex align-center justify-center place-content-evenly'''),
+],
+className='''bg-[#2F455C] w-full h-screen''')
+
+html.style= '''@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+               font-family : "Quicksand" , sans-serif; '''
 
 if __name__ == "__main__":
     app.run(debug = True)
