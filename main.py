@@ -62,26 +62,31 @@ app.layout = html.Div([
     
     # Footer
     html.Div([
+        html.Div(
         # Tech marathon
-        html.A(href="http://techmarathon.in/", children=[
-            html.Img(src = "./static/assets/tm-logo.png", width='40px', height='auto'),
-            html.H6("Tech marathon")
-        ],className="flex"),
+        children = (html.A(href="http://techmarathon.in/", children=[
+            html.Img(src = "./static/assets/tm-logo.png", width='60px', height='auto'),
+            ],className="flex"),
+            )
+        ),
+        html.Div(
+            children=(
+                html.H5(children = "In Collaboration With", 
+                className = '''text-[#FFFFFF] mt-[20px] mx-[20px]''')
+            )
+        )
+        ,
+        html.Div(
         # Sanganika
-        html.A(href="https://www.instagram.com/sanganika_dduc/" , children=[
-            html.Img(src="./static/assets/sanganika-logo.png", width='40px', height='auto'),
-            html.H6("Sanganika")
-        ], className="flex"),
-        # DDUC
-        html.A(href="https://dducollegedu.ac.in", children=[
-            html.Img(src="./static/assets/dduc-logo.png", width='40px', height='auto'),
-            html.H6("Deen Dayal Upadhyaya College")
-        ], className="flex"),
-        
+        children = (html.A(href="https://www.instagram.com/sanganika_dduc/" , children=[
+            html.Img(src="./static/assets/sanganika-logo.png", width='60px', height='auto'),
+            ], className="flex")
+            )
+        )
     ] , 
-    className='''flex align-center justify-center place-content-evenly'''),
+    className='''flex align-center justify-center mt-[10px]'''),
 ],
-className='''bg-[#2F455C] w-full h-screen''')
+className='''bg-gradient-to-br from-[#40C0CB] to-[#04165D] w-full h-screen''')
 
 html.style= '''@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
                font-family : "Quicksand" , sans-serif; '''
